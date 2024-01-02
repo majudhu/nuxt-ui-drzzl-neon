@@ -22,17 +22,16 @@ const { data, error } = useFetch(`/api/items/${params.id}`, {
   immediate: !isNew,
   transform: (item) => ({ ...item, price: +item.price } as ItemSchema),
   default() {
+    if (process.server || isNew) return {} as ItemSchema;
     const { id, ...item } =
       useNuxtData<InternalApi['/api/items']['get']>('items').data.value?.find(
         (item) => item.id == (params.id as any)
       ) ?? ({} as never);
-    return { ...item, price: +item.price || 0 } as ItemSchema;
+    return { ...item, price: +item.price || '' } as ItemSchema;
   },
 });
 
-watchEffect(
-  () => error.value?.statusCode === 404 && navigateTo('/admin/items')
-);
+watchEffect(() => error.value && navigateTo('/admin/items'));
 
 const fetchError = ref('');
 

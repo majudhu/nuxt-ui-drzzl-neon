@@ -29,7 +29,7 @@ const { data, error }: AsyncData<FormData, ApiError | null> = useFetch(
     lazy: true,
     immediate: !isNew,
     default(): FormData {
-      if (isNew) return {} as FormData;
+      if (process.server || isNew) return {} as FormData;
       const { id, ...item } =
         useNuxtData<InternalApi['/api/users']['get']>('users').data.value?.find(
           (item) => item.id == (params.id as any)
@@ -39,9 +39,7 @@ const { data, error }: AsyncData<FormData, ApiError | null> = useFetch(
   }
 );
 
-watchEffect(
-  () => error.value?.statusCode === 404 && navigateTo('/admin/users')
-);
+watchEffect(() => error.value && navigateTo('/admin/users'));
 
 const fetchError = ref('');
 
