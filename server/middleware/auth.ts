@@ -2,8 +2,11 @@ import { createError, defineEventHandler, sendRedirect } from 'h3';
 
 export default defineEventHandler(async function (event) {
   if (
-    (event.path.startsWith('/admin') || event.path.startsWith('/api')) &&
-    (event.method !== 'POST' || event.path !== '/api/auth')
+    event.path.startsWith('/admin') ||
+    event.path.startsWith('/api/users') ||
+    (event.path.startsWith('/api') &&
+      event.method !== 'GET' &&
+      !(event.path === '/api/auth' && event.method === 'POST'))
   ) {
     const session = await useTypedSession(event);
     if (session.data?.id) {
