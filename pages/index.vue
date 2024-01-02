@@ -11,6 +11,9 @@ const { data } = useFetch('/api/items');
       <p class="text-sm opacity-80 pb-2">
         {{ item.description }}
       </p>
+      <p class="font-semibold text-lg opacity-80 pb-2">
+        ${{ item.price.slice(0, -2) }}
+      </p>
       <UButton :to="`/item/${item.id}`">View Item</UButton>
     </UCard>
   </section>
@@ -23,6 +26,9 @@ const { data } = useFetch('/api/items');
       <p class="text-sm opacity-80 pb-2">
         {{ item.description }}
       </p>
+      <p class="font-semibold text-lg opacity-80 pb-2">
+        ${{ item.price.slice(0, -2) }}
+      </p>
       <UButton :to="`/item/${item.id}`">View Item</UButton>
     </UCard>
   </section>
@@ -34,6 +40,9 @@ const { data } = useFetch('/api/items');
       <h2 class="font-medium text-lg py-2">{{ item.name }}</h2>
       <p class="text-sm opacity-80 pb-2">
         {{ item.description }}
+      </p>
+      <p class="font-semibold text-lg opacity-80 pb-2">
+        ${{ item.price.slice(0, -2) }}
       </p>
       <UButton :to="`/item/${item.id}`">View Item</UButton>
     </UCard>

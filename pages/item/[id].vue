@@ -16,4 +16,5 @@ if (error.value?.statusCode === 404) {
   <p class="opacity-80 py-2">
     {{ data?.description }}
   </p>
+  <p class="text-2xl opacity-80 py-2">${{ data?.price.slice(0, -2) }}</p>
 </template>

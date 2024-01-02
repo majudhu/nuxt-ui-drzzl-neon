@@ -27,9 +27,9 @@ const { data, error }: AsyncData<FormData, ApiError | null> = useFetch(
   `/api/users/${params.id}`,
   {
     lazy: true,
-    key: `item-${params.id}`,
     immediate: !isNew,
-    default() {
+    default(): FormData {
+      if (isNew) return {} as FormData;
       const { id, ...item } =
         useNuxtData<InternalApi['/api/users']['get']>('users').data.value?.find(
           (item) => item.id == (params.id as any)

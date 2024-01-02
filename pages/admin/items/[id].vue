@@ -19,7 +19,6 @@ const links: BreadcrumbLink[] = [
 
 const { data, error } = useFetch(`/api/items/${params.id}`, {
   lazy: true,
-  key: `item-${params.id}`,
   immediate: !isNew,
   transform: (item) => ({ ...item, price: +item.price } as ItemSchema),
   default() {
