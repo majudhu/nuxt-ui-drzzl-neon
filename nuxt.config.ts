@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui'],
   typescript: { strict: true },
+  nitro: { rollupConfig: { external: ['cloudflare:sockets'] } },
   hooks: {
     ready() {
       init();
