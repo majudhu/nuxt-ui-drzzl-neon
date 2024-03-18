@@ -5,7 +5,7 @@ import { users } from './schema';
 import { eq } from 'drizzle-orm';
 
 export async function init() {
-  const client = postgres(process.env.DATABASE_URL!);
+  const client = postgres(import.meta.env.DATABASE_URL!);
   try {
     const db = drizzle(client);
     const anyUsers = await db

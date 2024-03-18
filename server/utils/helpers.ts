@@ -10,7 +10,7 @@ export function parseIdOrThrow(event: H3Event<EventHandlerRequest>) {
   else throw createError({ statusCode: 400, statusMessage: 'Bad Request' });
 }
 
-const SESSIONCFG = { password: process.env.SESSION_KEY } as SessionConfig;
+const SESSIONCFG = { password: import.meta.env.SESSION_KEY } as SessionConfig;
 
 export function useTypedSession(event: H3Event<EventHandlerRequest>) {
   return useSession<{ id?: number; name?: string }>(event, SESSIONCFG);
