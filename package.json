@@ -11,15 +11,14 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "drizzle-kit": "^0.20.8",
-    "nuxt": "^3.8.2",
-    "vue": "^3.3.12",
-    "vue-router": "^4.2.5"
+    "drizzle-kit": "^0.20.14",
+    "drizzle-orm": "^0.30.2",
+    "nuxt": "^3.11.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "dependencies": {
-    "@node-rs/argon2": "^1.5.2",
-    "@nuxt/ui": "^2.11.1",
-    "drizzle-orm": "^0.29.2",
+    "@nuxt/ui": "^2.14.2",
     "postgres": "^3.4.3"
   }
 }

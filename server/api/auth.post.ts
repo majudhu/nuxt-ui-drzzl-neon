@@ -1,7 +1,7 @@
-import { verify } from '@node-rs/argon2';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { users } from '~/server/schema';
+import { pbkdf2Verify } from '../crypto-pbkdf2';
 
 const loginSchema = z.object({ name: z.string(), password: z.string() });
 
@@ -12,7 +12,7 @@ export default defineEventHandler(async function (event) {
 
   const [user] = await db.select().from(users).where(eq(users.name, data.name));
 
-  if (user && (await verify(user.password, data.password))) {
+  if (user && (await pbkdf2Verify(user.password, data.password))) {
     const session = await useTypedSession(event);
     await session.update({ id: user.id, name: user.name });
     return { name: user.name };
