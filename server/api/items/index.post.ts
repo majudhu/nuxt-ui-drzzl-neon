@@ -16,6 +16,8 @@ export type ItemSchema = z.input<typeof itemSchema>;
 export default defineEventHandler(async function (event) {
   const data = await readValidatedBody(event, itemSchema.parse);
 
+  const db = getDb(event);
+
   const [item] = await db
     .insert(items)
     .values(data)

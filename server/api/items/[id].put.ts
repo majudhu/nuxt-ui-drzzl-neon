@@ -9,6 +9,8 @@ export default defineEventHandler(async function (event) {
 
   const data = await readValidatedBody(event, schema.parse);
 
+  const db = getDb(event);
+
   const [item] = await db
     .update(items)
     .set(data)

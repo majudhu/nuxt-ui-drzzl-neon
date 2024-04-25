@@ -4,6 +4,8 @@ import { items } from '~/server/schema';
 export default defineEventHandler(async function (event) {
   const id = parseIdOrThrow(event);
 
+  const db = getDb(event);
+
   const [item] = await db
     .select({
       name: items.name,

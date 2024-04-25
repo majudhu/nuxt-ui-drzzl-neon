@@ -4,6 +4,8 @@ import { users } from '~/server/schema';
 export default defineEventHandler(async function (event) {
   const id = parseIdOrThrow(event);
 
+  const db = getDb(event);
+
   const [user] = await db
     .select({ name: users.name })
     .from(users)

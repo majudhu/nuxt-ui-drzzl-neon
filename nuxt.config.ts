@@ -1,13 +1,14 @@
-import { init } from './server/init';
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui'],
+
   typescript: { strict: true },
-  hooks: {
-    ready() {
-      init();
-    },
+
+  nitro: {
+    preset: 'cloudflare-pages',
+    experimental: { wasm: true },
+    rollupConfig: { external: ['cloudflare:sockets'] },
   },
+
+  modules: ['nitro-cloudflare-dev', '@nuxt/ui'],
 });

@@ -6,20 +6,25 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "drizzle-kit": "^0.20.8",
-    "nuxt": "^3.8.2",
-    "vue": "^3.3.12",
-    "vue-router": "^4.2.5"
+    "preview": "pnpm run build && wrangler pages dev",
+    "postinstall": "nuxt prepare",
+    "deploy": "pnpm run build && wrangler pages deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@node-rs/argon2": "^1.5.2",
-    "@nuxt/ui": "^2.11.1",
-    "drizzle-orm": "^0.29.2",
-    "postgres": "^3.4.3"
+    "@nuxt/ui": "^2.15.2",
+    "drizzle-orm": "^0.30.9",
+    "nuxt": "^3.11.2",
+    "postgres": "^3.4.4",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
+    "zod": "^3.23.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240423.0",
+    "drizzle-kit": "^0.20.17",
+    "h3": "^1.11.1",
+    "nitro-cloudflare-dev": "^0.1.4",
+    "wrangler": "^3.52.0"
   }
 }
